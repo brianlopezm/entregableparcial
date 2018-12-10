@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class ActivityEntregable3 extends AppCompatActivity {
 
     private boolean active=false;
-    private boolean restart=true;
+    private boolean restart=false;
     private int cant=0;
     public static final String TAG= MainActivity.class.getCanonicalName();
     public static final String PREFS_NAME = "MyPrefsFile";
@@ -24,6 +24,7 @@ public class ActivityEntregable3 extends AppCompatActivity {
         SharedPreferences mPreferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor preferencesEditor= mPreferences.edit();
         preferencesEditor.putInt("cant",cant);
+        preferencesEditor.putBoolean("restart",restart);
         preferencesEditor.apply();
 
     }
@@ -34,8 +35,18 @@ public class ActivityEntregable3 extends AppCompatActivity {
         SharedPreferences mPreferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor preferencesEditor= mPreferences.edit();
         preferencesEditor.putInt("cant",cant);
+        preferencesEditor.putBoolean("restart",restart);
         preferencesEditor.apply();
 
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        SharedPreferences mPreferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor= mPreferences.edit();
+        preferencesEditor.putInt("cant",cant);
+        preferencesEditor.putBoolean("restart",restart);
+        preferencesEditor.apply();
     }
 
     @Override
@@ -45,6 +56,7 @@ public class ActivityEntregable3 extends AppCompatActivity {
 
         SharedPreferences mPreferences=getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         cant=mPreferences.getInt("cant",0);
+        restart=mPreferences.getBoolean("restart",false);
 
         final TextView tv= (TextView) findViewById(R.id.tView_time);
         final Button start= (Button) findViewById(R.id.butt_start);
@@ -62,7 +74,9 @@ public class ActivityEntregable3 extends AppCompatActivity {
                 active = true;
                 if (cant!=0 && restart){
                     cant=0;
-                    restart = false;}
+                    restart = false;
+                }
+                    
                 start.setEnabled(false);
                 stop.setEnabled(true);
                 AsyncTask<?, ?, ?> asyncTask = new AsyncTask<Object, Integer, Integer>() {

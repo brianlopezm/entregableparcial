@@ -83,7 +83,7 @@ public class ActivityEntregable4 extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(MyIntentService.RESPONSE_ACTION));
     }
 
-  
+
     @Override
     protected void onDestroy(){
         super.onDestroy();
