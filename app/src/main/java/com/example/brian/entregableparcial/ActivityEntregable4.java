@@ -1,5 +1,6 @@
 package com.example.brian.entregableparcial;
 
+import android.os.Messenger;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -82,15 +83,10 @@ public class ActivityEntregable4 extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(MyIntentService.RESPONSE_ACTION));
     }
 
+  
     @Override
-    protected  void onResume(){
-        super.onResume();
-       LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(MyIntentService.RESPONSE_ACTION));
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
+    protected void onDestroy(){
+        super.onDestroy();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(reciever);
     }
 

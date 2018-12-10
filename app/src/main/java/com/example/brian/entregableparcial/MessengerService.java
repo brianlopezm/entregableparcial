@@ -54,10 +54,5 @@ public class MessengerService extends Service {
         return mMessenger.getBinder();
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId){
-
-        return START_REDELIVER_INTENT;
-    }
 
 }
