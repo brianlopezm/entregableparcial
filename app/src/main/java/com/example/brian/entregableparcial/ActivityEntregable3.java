@@ -76,7 +76,7 @@ public class ActivityEntregable3 extends AppCompatActivity {
                     cant=0;
                     restart = false;
                 }
-                    
+
                 start.setEnabled(false);
                 stop.setEnabled(true);
                 AsyncTask<?, ?, ?> asyncTask = new AsyncTask<Object, Integer, Integer>() {
